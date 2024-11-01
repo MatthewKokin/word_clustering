@@ -53,23 +53,3 @@ export const validClusters = [
     "🛑 Rejection with Contempt", "💸 Extravagance and Poverty", "💤 Lack of Energy", 
     "😢 Sorrowful", "💵 Poverty", "😡 Anger", "Noise"
 ];
-
-
-
-async function loadCSV() {
-    const response = await fetch('test_data.csv');
-    const data = await response.text();
-
-    const rows = data.split('\n').map(row => row.split(','));
-    const headers = rows[0];
-    const wordData = rows.slice(1).map(row => {
-        return headers.reduce((obj, header, index) => {
-            obj[header] = row[index];
-            return obj;
-        }, {});
-    });
-    console.log(wordData);
-    return wordData;
-}
-
-// export const wordData_2 = loadCSV()

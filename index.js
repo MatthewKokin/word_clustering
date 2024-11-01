@@ -1,7 +1,39 @@
-import { wordData} from "./data.js";
+import { wordData } from "./data.js";
 import {sortWordsByClusters, populateFilterDropdown} from "./functions.js"
 // List of valid cluster names (make sure this matches the actual cluster names you expect)
 
+// async function loadCSV(csv_name) {
+//     const response = await fetch(csv_name);
+//     const data = await response.text();
+
+//     const rows = data.split('\n').map(row => row.split(','));
+//     const headers = rows[0];
+//     const wordData = rows.slice(1).map(row => {
+//         return headers.reduce((obj, header, index) => {
+//             obj[header] = row[index];
+//             return obj;
+//         }, {});
+//     });
+//     console.log('Load_CSV worked! ' + wordData);
+//     return wordData;
+// }
+
+async function loadCSV() {
+    const response = await fetch('clustered_words_final.csv');
+    const data = await response.text();
+
+    // Parse CSV data
+    const rows = data.split('\n').map(row => row.split(','));
+    const headers = rows[0];
+    const wordData = rows.slice(1).map(row => {
+        return headers.reduce((obj, header, index) => {
+            obj[header] = row[index];
+            return obj;
+        }, {});
+    });
+
+    return wordData;
+}
 
 /*
 - You get an array of objects wordData
@@ -69,11 +101,12 @@ function setupFilter() {
     });
 }
 
-// Initialize page
-function initialize(wordData) {
-    // const wordData = await loadCSV();
+// Initialize page with CSV file input
+async function initialize(csv_name) {
+    // const wordData = await loadCSV(csv_name);
     renderTables(wordData);
     setupFilter();
 }
 
-initialize(wordData);
+// Call initialize with the CSV file name
+initialize();

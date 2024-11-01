@@ -1,0 +1,82 @@
+[
+    {
+        "word": "admonish",
+        "definition": "to warn strongly, even to the point of reprimanding",
+        "part_of_speech": "verb",
+        "example": "The teacher admonished the students for talking during the lecture.",
+        "cluster": "🗣️ Harsh Criticism",
+        "word_id": 1
+    },
+    {
+        "word": "ascetic",
+        "definition": "practicing self-denial",
+        "part_of_speech": "adjective",
+        "example": "The monk led an ascetic life of simplicity and solitude.",
+        "cluster": "🧘‍♂️ Self-Denial",
+        "word_id": 2
+    },
+    {
+        "word": "banality",
+        "definition": "a trite or obvious remark",
+        "part_of_speech": "noun",
+        "example": "The conversation was filled with banality and small talk.",
+        "cluster": "💬 Trite Remarks",
+        "word_id": 3
+    },
+    {
+        "word": "copious",
+        "definition": "in abundant supply",
+        "part_of_speech": "adjective",
+        "example": "The copious notes taken by the student were very helpful during exams.",
+        "cluster": "🌱 Abundance",
+        "word_id": 4
+    },
+    {
+        "word": "cryptic",
+        "definition": "mysterious or vague, usually intentionally",
+        "part_of_speech": "adjective",
+        "example": "His cryptic response left everyone in confusion.",
+        "cluster": "🕵️‍♂️ Vague or Ambiguous",
+        "word_id": 5
+    },
+    {
+        "word": "exasperate",
+        "definition": "to irritate intensely",
+        "part_of_speech": "verb",
+        "example": "The long delay began to exasperate the passengers.",
+        "cluster": "😠 Intense Irritation",
+        "word_id": 6
+    },
+    {
+        "word": "frugal",
+        "definition": "not spending much money (but spending wisely)",
+        "part_of_speech": "adjective",
+        "example": "Being frugal, she avoided unnecessary expenses.",
+        "cluster": "💰 Frugality",
+        "word_id": 7
+    },
+    {
+        "word": "guile",
+        "definition": "cunning intelligence",
+        "part_of_speech": "noun",
+        "example": "He used his guile to get out of the tricky situation.",
+        "cluster": "🤥 Deception",
+        "word_id": 8
+    },
+    {
+        "word": "belligerent",
+        "definition": "characteristic of one eager to fight",
+        "part_of_speech": "adjective",
+        "example": "He was belligerent and prone to arguments.",
+        "cluster": "⚔️ War-like",
+        "word_id": 9
+    },
+    {
+        "word": "dolorous",
+        "definition": "showing sorrow",
+        "part_of_speech": "adjective",
+        "example": "The dolorous song brought tears to everyone’s eyes.",
+        "cluster": "😢 Sorrowful",
+        "word_id": 10
+    }
+]

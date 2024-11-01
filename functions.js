@@ -1,4 +1,5 @@
 import { validClusters } from "./data.js";
+
 export function sortWordsByClusters(wordData) {
     // Return an object with keys of cluster names and arrays
     const clusters = {};
@@ -19,3 +20,4 @@ export function populateFilterDropdown(clusters, clusterFilter) {
         clusterFilter.appendChild(option);
     });
 }
+
