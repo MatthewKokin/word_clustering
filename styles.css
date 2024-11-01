@@ -1,0 +1,53 @@
+/* Basic page styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+/* Header styling */
+h1 {
+    text-align: center;
+}
+
+/* Filter styling */
+label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+#cluster-filter {
+    width: 200px;
+    padding: 5px;
+}
+
+/* Table container styling */
+#clusters-container {
+    margin-top: 20px;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.cluster-title {
+    font-size: 1.5em;
+    margin-top: 20px;
+    color: #333;
+}
+
+.hidden {
+    display: none;
+}
