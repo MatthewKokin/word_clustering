@@ -1,39 +1,6 @@
 import { wordData } from "./data.js";
 import {sortWordsByClusters, populateFilterDropdown} from "./functions.js"
-// List of valid cluster names (make sure this matches the actual cluster names you expect)
 
-// async function loadCSV(csv_name) {
-//     const response = await fetch(csv_name);
-//     const data = await response.text();
-
-//     const rows = data.split('\n').map(row => row.split(','));
-//     const headers = rows[0];
-//     const wordData = rows.slice(1).map(row => {
-//         return headers.reduce((obj, header, index) => {
-//             obj[header] = row[index];
-//             return obj;
-//         }, {});
-//     });
-//     console.log('Load_CSV worked! ' + wordData);
-//     return wordData;
-// }
-
-async function loadCSV() {
-    const response = await fetch('clustered_words_final.csv');
-    const data = await response.text();
-
-    // Parse CSV data
-    const rows = data.split('\n').map(row => row.split(','));
-    const headers = rows[0];
-    const wordData = rows.slice(1).map(row => {
-        return headers.reduce((obj, header, index) => {
-            obj[header] = row[index];
-            return obj;
-        }, {});
-    });
-
-    return wordData;
-}
 
 /*
 - You get an array of objects wordData
@@ -42,16 +9,20 @@ async function loadCSV() {
 
 // Filter wordData to only include valid clusters and render tables
 function renderTables(wordData) {
-    const clusters = sortWordsByClusters(wordData)
+    const clusters = sortWordsByClusters(wordData);
     const clustersContainer = document.getElementById('clusters-container');
-    const clusterFilter = document.getElementById('cluster-filter');
-    populateFilterDropdown(clusters, clusterFilter)
+    const clusterButtonContainer = document.getElementById('cluster-button-container'); // Container for cluster buttons
 
-    function createTable() {
-
-    }
-    // Render tables for each cluster
+    // Create a button for each cluster
     Object.keys(clusters).forEach(cluster => {
+        const button = document.createElement('button');
+        button.className = 'cluster-button';
+        button.textContent = cluster;
+        button.dataset.cluster = cluster;
+        button.onclick = () => toggleClusterVisibility(cluster); // Attach click event
+        clusterButtonContainer.appendChild(button);
+
+        // Create the table for each cluster
         const clusterTitle = document.createElement('div');
         clusterTitle.className = 'cluster-title';
         clusterTitle.textContent = cluster;
@@ -73,7 +44,7 @@ function renderTables(wordData) {
             const row = document.createElement('tr');
             ['word', 'part_of_speech', 'example'].forEach(field => {
                 const td = document.createElement('td');
-                td.textContent = word[field];
+                td.textContent = word[field] || "(missing)"; // Show "(missing)" if part_of_speech is missing
                 row.appendChild(td);
             });
             tbody.appendChild(row);
@@ -83,6 +54,7 @@ function renderTables(wordData) {
         const clusterDiv = document.createElement('div');
         clusterDiv.className = 'cluster';
         clusterDiv.dataset.cluster = cluster;
+        clusterDiv.style.display = 'none'; // Hide initially
         clusterDiv.appendChild(clusterTitle);
         clusterDiv.appendChild(table);
 
@@ -90,23 +62,24 @@ function renderTables(wordData) {
     });
 }
 
-// Filter clusters based on the slicer selection
-function setupFilter() {
-    const clusterFilter = document.getElementById('cluster-filter');
-    clusterFilter.addEventListener('change', () => {
-        const selectedClusters = Array.from(clusterFilter.selectedOptions).map(opt => opt.value);
-        document.querySelectorAll('.cluster').forEach(clusterDiv => {
-            clusterDiv.classList.toggle('hidden', !selectedClusters.includes(clusterDiv.dataset.cluster));
-        });
-    });
+// Toggle cluster visibility on button click
+function toggleClusterVisibility(cluster) {
+    const clusterDiv = document.querySelector(`.cluster[data-cluster="${cluster}"]`);
+    const button = document.querySelector(`.cluster-button[data-cluster="${cluster}"]`);
+    
+    // Toggle visibility
+    if (clusterDiv.style.display === 'none') {
+        clusterDiv.style.display = 'block';
+        button.classList.add('active'); // Add active class for styling
+    } else {
+        clusterDiv.style.display = 'none';
+        button.classList.remove('active'); // Remove active class
+    }
 }
 
-// Initialize page with CSV file input
-async function initialize(csv_name) {
-    // const wordData = await loadCSV(csv_name);
+// Initialize page
+function initialize() {
     renderTables(wordData);
-    setupFilter();
 }
 
-// Call initialize with the CSV file name
 initialize();
