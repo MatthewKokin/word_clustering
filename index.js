@@ -30,7 +30,7 @@ function renderTables(wordData) {
         const thead = document.createElement('thead');
         const headerRow = document.createElement('tr');
 
-        ['Word', 'Part of Speech', 'Definition'].forEach(text => {
+        ['Word', 'Part of Speech', 'Definition', 'Example'].forEach(text => {
             const th = document.createElement('th');
             th.textContent = text;
             headerRow.appendChild(th);
@@ -41,7 +41,7 @@ function renderTables(wordData) {
         const tbody = document.createElement('tbody');
         clusters[cluster].forEach(word => {
             const row = document.createElement('tr');
-            ['word', 'part_of_speech', 'definition'].forEach(field => {
+            ['word', 'part_of_speech', 'definition', 'example'].forEach(field => {
                 const td = document.createElement('td');
                 td.textContent = word[field] || "(missing)";
                 row.appendChild(td);
